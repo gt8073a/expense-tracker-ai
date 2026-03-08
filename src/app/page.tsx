@@ -14,6 +14,7 @@ import {
 import { CATEGORIES } from '@/lib/categories';
 import SummaryCard from '@/components/SummaryCard';
 import CategoryChart from '@/components/CategoryChart';
+import ExportButton from '@/components/ExportButton';
 
 export default function DashboardPage() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -111,25 +112,28 @@ export default function DashboardPage() {
             })}
           </p>
         </div>
-        <Link
-          href="/expenses/new"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-medium rounded-xl hover:bg-indigo-700 transition-colors shadow-sm"
-        >
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <div className="flex items-center gap-2">
+          <ExportButton expenses={expenses} />
+          <Link
+            href="/expenses/new"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-medium rounded-xl hover:bg-indigo-700 transition-colors shadow-sm"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-          Add Expense
-        </Link>
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            Add Expense
+          </Link>
+        </div>
       </div>
 
       {/* Summary cards */}
