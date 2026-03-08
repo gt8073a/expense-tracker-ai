@@ -29,3 +29,15 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+To run on a different port:
+
+```bash
+npm run dev -- --port 3001
+```
+
+To stop the dev server (useful when started as a background process):
+
+```bash
+npm run stop
+```

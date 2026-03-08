@@ -5,10 +5,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev      # Start dev server at http://localhost:3000
-npm run build    # Production build (use to verify no TS/lint errors)
-npm run lint     # ESLint
+npm run dev                  # Start dev server at http://localhost:3000
+npm run dev -- --port 3001   # Start on a different port
+npm run stop                 # Stop a background dev server (pkill -f 'next dev')
+npm run build                # Production build (use to verify no TS/lint errors)
+npm run lint                 # ESLint
 ```
+
+> `npm run stop` exists because the dev server is often started as a background process (no terminal to Ctrl+C).
 
 ## Architecture
 
