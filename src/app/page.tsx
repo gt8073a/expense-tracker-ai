@@ -14,10 +14,12 @@ import {
 import { CATEGORIES } from '@/lib/categories';
 import SummaryCard from '@/components/SummaryCard';
 import CategoryChart from '@/components/CategoryChart';
+import ExportModal from '@/components/ExportModal';
 
 export default function DashboardPage() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loaded, setLoaded] = useState(false);
+  const [showExport, setShowExport] = useState(false);
 
   useEffect(() => {
     seedSampleData();
@@ -111,26 +113,41 @@ export default function DashboardPage() {
             })}
           </p>
         </div>
-        <Link
-          href="/expenses/new"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-medium rounded-xl hover:bg-indigo-700 transition-colors shadow-sm"
-        >
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowExport(true)}
+            className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors shadow-sm"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-          Add Expense
-        </Link>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Export Data
+          </button>
+          <Link
+            href="/expenses/new"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-medium rounded-xl hover:bg-indigo-700 transition-colors shadow-sm"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            Add Expense
+          </Link>
+        </div>
       </div>
+
+      {showExport && (
+        <ExportModal expenses={expenses} onClose={() => setShowExport(false)} />
+      )}
 
       {/* Summary cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
